@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from time import strftime
+import base64
 
 def write():
 	clear()
@@ -16,8 +17,10 @@ def write():
 	print('Reason for checking '+ cc + ' out?' )
 	reason = raw_input('Please type a reason: ').strip()
 	clear()
+	log = (time+': '+name+' checked out '+cc+' #'+id+' for '+length+' day(s)'+' reason: '+reason)
+	logenc = base64.b64encode(log)
 	f = open('log.txt', 'a')
-	f.write(time+': '+name+' checked out '+cc+' #'+id+' for '+length+' day(s)'+' reason: '+reason+'\n')
+	f.write(logenc + '\n')
 	f.close()
 	print(name + ' sucessfully checked out ' + cc + ' #'+id+'\n')
 	print('would you like to check out anything else?')
@@ -104,6 +107,7 @@ def checkout():
 		lenschose = raw_input('Make a selection: ')
 		if lenschose == '1':
 			lenschose = "CineKit"
+			noid = True
 			cc = lenschose
 			write()
 		if lenschose == '2':
@@ -136,8 +140,10 @@ def main():
 		checkout()
 	if var == '2':
 		clear()
-		for line in reversed(open("log.txt").readlines()):
-			print line.rstrip()
+		for line in (open("log.txt").readlines()):
+			dec = line.rstrip()
+			print base64.b64decode(dec)
+		print(' ')
 		raw_input('Press enter to continue')
 		clear()
 		main()

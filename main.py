@@ -3,6 +3,7 @@ from time import strftime
 import base64
 
 def main():
+	clear()
 	print('Main Menu\n\n1: Checkout equipment\n2. Check who has equipment')
 	var = raw_input('Make a selection: ')
 	clear()
@@ -13,7 +14,6 @@ def main():
 		if not name:
 			clear()
 			return main()
-		clear()
 		checkout()
 	if var == '2':
 		clear()
@@ -22,7 +22,6 @@ def main():
 			print base64.b64decode(dec)
 		print(' ')
 		raw_input('Press enter to continue')
-		clear()
 		main()
 	if var == 'e':
 		raw_input()
@@ -31,6 +30,7 @@ def main():
 		return main()
 
 def checkout():
+	clear()
 	global time, cc, noid
 	noid = False
 	time = strftime("%b %d %Y %I:%M %p")
@@ -55,8 +55,7 @@ def checkout():
 			cc = camcheck
 			write()
 		else:
-			print('invalid selection')
-			return checkout()
+			checkout()
 	if equip == '2':
 		print('Audio Devices\n\n1. H6N\n2. H4N\n3. Rodemic\n4. Boom')
 		audchose = raw_input('Make a selection: ')
@@ -76,6 +75,8 @@ def checkout():
 			audcheck = "Boom"
 			cc = audcheck
 			write()
+		else:
+			checkout()
 	if equip == '3':
 		print('Grip\n\n1. Tripod\n2. Steadicam\n3. XLR cable\n4. C-Stand')
 		gripchose = raw_input('Make a selection: ')
@@ -96,6 +97,8 @@ def checkout():
 			gripcheck = "C-Stand"
 			cc = gripcheck
 			write()
+		else:
+			checkout()
 	if equip == '4':
 		print('Lenses\n\n1. Cine Kit (entire case)\n2. Canon 23-135mm\n3. Canon 50mm\n4. Cine 50')
 		lenschose = raw_input('Make a selection: ')
@@ -116,9 +119,10 @@ def checkout():
 			lenschose = "Cine50"
 			cc = lenschose
 			write()
+		else:
+			checkout()
 	if equip == ('5'):
 		print('Nothing here yet')
-		clear()
 		return checkout()
 
 def write():

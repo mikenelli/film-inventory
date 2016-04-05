@@ -24,15 +24,16 @@ def main():
 		raw_input('Press enter to continue')
 		clear()
 		main()
-	if var == 'exit':
+	if var == 'e':
 		raw_input()
+		return
 	else:
 		return main()
 
 def checkout():
 	global time, cc, noid
 	noid = False
-	time = strftime("%b %d %Y %I:%M")
+	time = strftime("%b %d %Y %I:%M %p")
 	print('What are you checking out?\n\n1. Camera\n2. Audio\n3. Grip\n4. Lens\n5. Other')
 	equip = raw_input('Make a selection: ')
 	clear()
@@ -41,16 +42,16 @@ def checkout():
 		camchose = raw_input('Make a selection: ')
 		clear()
 		if camchose == '1':
-			camcheck = ('Varicam')
+			camcheck = "Varicam"
 			noid = True
 			cc = camcheck
 			write()
 		if camchose == '2':
-			camcheck = ('200')
+			camcheck = "200"
 			cc = camcheck
 			write()
 		if camchose == '3':
-			camcheck = ('60D')
+			camcheck = "60D"
 			cc = camcheck
 			write()
 		else:
@@ -60,23 +61,23 @@ def checkout():
 		print('Audio Devices\n\n1. H6N\n2. H4N\n3. Rodemic\n4. Boom')
 		audchose = raw_input('Make a selection: ')
 		if audchose == '1':
-			audcheck = ('H6N')
+			audcheck = "H6N"
 			cc = audcheck
 			write()
 		if audchose == '2':
-			audcheck = ('H4N')
+			audcheck = "H4N"
 			cc = audcheck
 			write()
 		if audchose == '3':
-			audcheck = ('Rodemic')
+			audcheck = "Rodemic"
 			cc = audcheck
 			write()
 		if audchose == '4':
-			audcheck = ('Boom')
+			audcheck = "Boom"
 			cc = audcheck
 			write()
 	if equip == '3':
-		print('Grip\n1. Tripod\n\n2. Steadicam\n3. XLR cable\n4. C-Stand')
+		print('Grip\n\n1. Tripod\n2. Steadicam\n3. XLR cable\n4. C-Stand')
 		gripchose = raw_input('Make a selection: ')
 		if gripchose == ('1'):
 			gripcheck = "Tripod"
@@ -96,7 +97,7 @@ def checkout():
 			cc = gripcheck
 			write()
 	if equip == '4':
-		print('Lenses\n1. Cine Kit (entire case)\n2. Canon 23-135mm\n3. Canon 50mm\n4. Cine 50')
+		print('Lenses\n\n1. Cine Kit (entire case)\n2. Canon 23-135mm\n3. Canon 50mm\n4. Cine 50')
 		lenschose = raw_input('Make a selection: ')
 		if lenschose == ('1'):
 			lenschose = "CineKit"
@@ -155,4 +156,3 @@ def clear():
 	print(chr(27) + "[2J")
 			
 main()
-	
